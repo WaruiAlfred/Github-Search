@@ -8,7 +8,7 @@ import { Repository } from '../classes/repository';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpserviceService {
+export class HttpsearchService {
 
  username:string|any;
  user:User;
@@ -62,7 +62,7 @@ export class HttpserviceService {
 
   }
 
-  // findProfile(username:string){
-  //   this.username = username
-  // }
+  findProfile(username:string){
+    this.username = username
+  }
 }
