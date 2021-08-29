@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-// import 'rxjs/add/observable/map';
 import { environment } from 'src/environments/environment';
 import { User } from '../classes/user';
 import { Repository } from '../classes/repository';
@@ -20,10 +19,7 @@ export class HttpsearchService {
     this.username = "WaruiAlfred"
   }
 
-  // getUserName(){
-  //   return this.http.get("https://api.github.com/users/" + this.username + "?access_token=" + environment.apiUrl)
-  // }
-
+ 
   getUserDetails(){
     interface ApiResponse{
       name:string;
