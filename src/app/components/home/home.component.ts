@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Repository } from 'src/app/classes/repository';
+import { User } from 'src/app/classes/user';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
 
 @Component({
@@ -8,12 +10,28 @@ import { HttpserviceService } from 'src/app/services/httpservice.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private httpService:HttpserviceService) { }
+  user!: User;
+  repos: Repository|any;
+  username:string|any;
+
+  constructor(private httpService:HttpserviceService) {
+
+  }
+
+
 
   ngOnInit() {
-    this.httpService.getUserName().subscribe(res => {
-      console.log(res);
+    // this.httpService.getUserName().subscribe(res => {
+    //   console.log(res);
+    // })
+
+    this.httpService.getUserDetails()
+    this.user = this.httpService.user
+
+    this.httpService.getUserRepos().subscribe(output=>{
+      this.repos = output;
     })
+
   }
 
 }
