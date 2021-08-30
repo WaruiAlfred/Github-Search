@@ -13,10 +13,13 @@ export class HttpserviceService {
  user:User;
  repos:Repository;
 
+ private apiKey:string 
+
   constructor(private http:HttpClient) {
     this.repos = new Repository("","","");
     this.user = new User("","","",0,0);
-    this.username = "WaruiAlfred"
+    this.username = "WaruiAlfred";
+    this.apiKey = environment.apiUrl
   }
 
 
@@ -30,7 +33,7 @@ export class HttpserviceService {
       following:number
     }
     let promise = new Promise((resolve,reject)=>{
-      this.http.get<ApiResponse>("https://api.github.com/users/" + this.username + "?access_token=" + environment.apiUrl).toPromise().then(output=>{
+      this.http.get<ApiResponse>("https://api.github.com/users/" + this.username + "?access_token=" + this.apiKey).toPromise().then(output=>{
         this.user.name = output.name
         this.user.avatar_url = output.avatar_url
         this.user.html_url = output.html_url
@@ -54,7 +57,7 @@ export class HttpserviceService {
       description:string;
       html_url:string;
     }
-    return  this.http.get<ApiResponse>("https://api.github.com/users/" + this.username + "/repos?access_token=" + environment.apiUrl)
+    return  this.http.get<ApiResponse>("https://api.github.com/users/" + this.username + "/repos?access_token=" + this.apiKey)
 
   }
 
